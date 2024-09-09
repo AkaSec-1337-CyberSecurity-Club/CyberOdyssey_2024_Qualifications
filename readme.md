@@ -31,3 +31,8 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
+
+## Misc
+
+| Challenge | Difficulty | Author | Writeup |
+| --------- | ---------- | ------ | ------- |
