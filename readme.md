@@ -17,6 +17,7 @@
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
 | I got Tren | Easy | [mza7a](https://github.com/mza7a) | mashi db hh |
+| I got Test | Easy | [mza7a](https://github.com/mza7a) | mashi db hh | 
 
 ## Pwn
 
