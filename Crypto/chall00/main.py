@@ -23,12 +23,15 @@ class MyEncryption:
         self.e = 0x10001
         self.flag = bytes_to_long(FLAG)
     
-    def encrypt(self):
+    def encrypt(self, counter):
         n = 1
-        new_p = getPrime(1024)
-        new_q = getPrime(1024)
-        self.primes.append(new_p)
-        self.primes.append(new_q)
+        self.primes = self.primes[:2]
+        for i in range(counter):
+            print(f"Generating new primes for round {i+1}")
+            new_p = getPrime(1024)
+            new_q = getPrime(1024)
+            self.primes.append(new_p)
+            self.primes.append(new_q)
         for prime in self.primes:
             n *= prime
         self.n = n
@@ -36,6 +39,7 @@ class MyEncryption:
 
 def main():
     myrsa = MyEncryption()
+    counter = 0
     while True:
         for line in HEADER:
             print(line, end='')
@@ -43,7 +47,8 @@ def main():
         print(MENU)
         choice = input("Enter your choice: ")
         if choice == '1':
-            p, encrypted_flag = myrsa.encrypt()
+            counter += 1
+            p, encrypted_flag = myrsa.encrypt(counter)
             print(f"p = {p}\nencrypted_flag = {encrypted_flag}")
         elif choice == '2':
             your_n = int(input("Enter your N: "))
