@@ -28,6 +28,8 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
+| easy_license | Easy | [pengu](https://github.com/P3enguin) | x |
+| pengolius | Medium | [pengu](https://github.com/P3enguin) | x |
 
 ## Forensics
 
