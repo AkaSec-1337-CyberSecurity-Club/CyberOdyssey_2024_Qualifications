@@ -23,6 +23,9 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
+| SpermPwn | Easy |  [5n0023](https://github.com/5n0023) | x |
+| Smaqlo | Easy |  [5n0023](https://github.com/5n0023) | x |
+| BunshinNoJutsu | Meduim |  [5n0023](https://github.com/5n0023) | x |
 
 ## Rev
 
