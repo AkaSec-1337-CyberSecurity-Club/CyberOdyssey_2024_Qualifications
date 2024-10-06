@@ -33,6 +33,7 @@
 | --------- | ---------- | ------ | ------- |
 | easy_license | Easy | [pengu](https://github.com/P3enguin) | x |
 | pengolius | Medium | [pengu](https://github.com/P3enguin) | x |
+| webserv | Hard | [H3r0](https://github.com/yassine-nid) | x |
 
 ## Forensics
 
