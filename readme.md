@@ -32,6 +32,8 @@
 | --------- | ---------- | ------ | ------- |
 | easy_license | Easy | [pengu](https://github.com/P3enguin) | x |
 | pengolius | Medium | [pengu](https://github.com/P3enguin) | x |
+| peroxide | Medium | [miyako](https://github.com/viierr) | x |
+| ferric | Medium | [miyako](https://github.com/viierr) | x |
 | webserv | Hard | [H3r0](https://github.com/yassine-nid) | x |
 
 ## Forensics
