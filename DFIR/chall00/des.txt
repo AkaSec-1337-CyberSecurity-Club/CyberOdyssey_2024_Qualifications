@@ -1,0 +1,1 @@
+Samaqlo received an alarming email from Instagram notifying him that someone attempted to log into his account. Shortly after, Samaqlo's account was compromised. Your task is to investigate the incident and determine who was behind the hack. Can you uncover the perpetrator and expose their methods?
