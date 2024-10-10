@@ -40,9 +40,9 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
-| Inception | Hard | [samaqlo](https://github.com/samaqlo/) | x |
-| lqri3a | Medium | [samaqlo](https://github.com/samaqlo/) | x |
-| 3aseeeeeeeema | Medium | [samaqlo](https://github.com/samaqlo/) | x |
+| [Inception](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/DFIR/Inception) | Hard | [samaqlo](https://github.com/samaqlo/) | x |
+| [lqri3a](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/DFIR/lqri3a) | Medium | [samaqlo](https://github.com/samaqlo/) | x |
+| [3aseeeeeeeema](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/DFIR/3aseeeeeeeema) | Medium | [samaqlo](https://github.com/samaqlo/) | x |
 
 ## Misc
 
