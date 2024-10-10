@@ -1,0 +1,3 @@
+Snooz fell victim to a cyber attack after visiting the Robotics Club website. We need your assistance to uncover the details of how our friend Snooz was hacked. Help us investigate and discover the vulnerabilities that led to this incident.
+Note: The flag is divided into three parts.
+Note: The flag format is AKASEC{...}
