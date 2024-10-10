@@ -40,6 +40,9 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
+| Inception | Hard | [samaqlo](https://github.com/samaqlo/) | x |
+| lqri3a | Medium | [samaqlo](https://github.com/samaqlo/) | x |
+| 3aseeeeeeeema | Medium | [samaqlo](https://github.com/samaqlo/) | x |
 
 ## Misc
 
