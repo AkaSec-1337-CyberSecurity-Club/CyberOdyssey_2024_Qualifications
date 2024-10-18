@@ -50,3 +50,4 @@
 | --------- | ---------- | ------ | ------- |
 | [secureLibrary](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/secureLibrary) | Easy | [hel-makh](https://github.com/hel-makh) | x |
 | [pyJail](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/pyJail) | Medium | [hel-makh](https://github.com/hel-makh) | x |
+| [QRupted Code](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/QRupted%20Code) | Medium | [hel-makh](https://github.com/hel-makh) | x |
