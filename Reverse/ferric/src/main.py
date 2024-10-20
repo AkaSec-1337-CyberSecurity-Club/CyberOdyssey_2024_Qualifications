@@ -5,191 +5,166 @@ import subprocess
 import tempfile
 import base64
 import time
+from typing import Tuple
 
 flag = "ODYSSEY{str34m_d34th_m3t4l_by_p4nch1k0}"
 
-def gen_rand_pwd(length=8):
+def gen_pwd(length: int = 8) -> str:
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
-def gen_x86_64(pwd, rounds):
-    ops = ["+", "-", "^", "rr", "rl"]
+def gen_x86_64_asm(pwd: str, rounds: int) -> str:
+    ops = {
+        "+": lambda res, rhs: (res + rhs, f"\taddq ${rhs}, %rdi\n"),
+        "-": lambda res, rhs: (res - rhs, f"\tsubq ${rhs}, %rdi\n"),
+        "^": lambda res, rhs: (res ^ rhs, f"\txorq ${rhs}, %rdi\n"),
+        "rl": lambda res, shv: (((res << shv) | (res >> (64 - shv))) & 0xffffffffffffffff, f"\trolq ${shv}, %rdi\n"),
+        "rr": lambda res, shv: (((res >> shv) | (res << (64 - shv))) & 0xffffffffffffffff, f"\trorq ${shv}, %rdi\n")
+    }
+    
     res = int.from_bytes(pwd.encode(), "little")
-    ret = ""
+    asm = ""
+    
     for _ in range(rounds):
-        op = random.choice(ops)
+        op = random.choice(list(ops.keys()))
         rhs = random.randint(1, 10000)
-        shv = random.randint(1, 63)
-        if (op == "+"):
-            res += rhs
-            ret += f"\taddq ${rhs}, %rdi\n"
-        if (op == "-"):
-            res -= rhs
-            ret += f"\tsubq ${rhs}, %rdi\n"
-        if (op == "^"):
-            res ^= rhs
-            ret += f"\txorq ${rhs}, %rdi\n"
-        if (op == "rl"):
-            res = ((res << shv) | (res >> (64 - shv))) & 0xffffffffffffffff
-            ret += f"\trolq ${shv}, %rdi\n"
-        if (op == "rr"):
-            res = ((res >> shv) | (res << (64 - shv))) & 0xffffffffffffffff
-            ret += f"\trorq ${shv}, %rdi\n"
-    ret += f"\tmovabsq ${res}, %rax\n"    
-    ret += f"\tcmpq %rax, %rdi\n"
-    return ret
+        shv = random.randint(1, 63) if op in ["rl", "rr"] else None
+        res, inst = ops[op](res, rhs if shv is None else shv)
+        asm += inst
+    
+    asm += f"\tmovabsq ${res}, %rax\n\tcmpq %rax, %rdi\n"
+    return asm
 
-def gen_arm(pwd, rounds):
-    ops = ["+", "-", "^", "rr", "rl"]
+def gen_arm64_asm(pwd: str, rounds: int) -> str:
+    ops = {
+        "+": lambda res, rhs: (res + rhs, f"\tmov x1, #{rhs}\n\tadd x0, x0, x1\n"),
+        "-": lambda res, rhs: (res - rhs, f"\tmov x1, #{rhs}\n\tsub x0, x0, x1\n"),
+        "^": lambda res, rhs: (res ^ rhs, f"\tmov x1, #{rhs}\n\teor x0, x0, x1\n"),
+        "rl": lambda res, shv: (((res << shv) | (res >> (64 - shv))) & 0xffffffffffffffff, f"\tror x0, x0, #{64 - shv}\n"),
+        "rr": lambda res, shv: (((res >> shv) | (res << (64 - shv))) & 0xffffffffffffffff, f"\tror x0, x0, #{shv}\n")
+    }
+    
     res = int.from_bytes(pwd.encode(), "little")
-    ret = ""
+    asm = ""
+    
     for _ in range(rounds):
-        op = random.choice(ops)
+        op = random.choice(list(ops.keys()))
         rhs = random.randint(1, 10000)
-        shv = random.randint(1, 63)
-        if (op == "+"):
-            res += rhs
-            ret += f"\tmov x1, #{rhs}\n"
-            ret += f"\tadd x0, x0, x1\n"
-        if (op == "-"):
-            res -= rhs
-            ret += f"\tmov x1, #{rhs}\n"
-            ret += f"\tsub x0, x0, x1\n"
-        if (op == "^"):
-            res ^= rhs
-            ret += f"\tmov x1, #{rhs}\n"
-            ret += f"\teor x0, x0, x1\n"
-        if (op == "rl"):
-            res = ((res << shv) | (res >> (64 - shv))) & 0xffffffffffffffff
-            ret += f"\tror x0, x0, #{64 - shv}\n"
-        if (op == "rr"):
-            res = ((res >> shv) | (res << (64 - shv))) & 0xffffffffffffffff
-            ret += f"\tror x0, x0, #{shv}\n"
-    upper = (res >> 32) & 0xffffffff
-    lower = res & 0xffffffff
-    upper_high = (upper >> 16) & 0xffff
-    upper_low = upper & 0xffff
-    lower_high = (lower >> 16) & 0xffff
-    lower_low = lower & 0xffff
-    ret += f"\tmovk x1, #{upper_high}, lsl 48\n"
-    ret += f"\tmovk x1, #{upper_low}, lsl 32\n"
-    ret += f"\tmovk x1, #{lower_high}, lsl 16\n"
-    ret += f"\tmovk x1, #{lower_low}\n"
-    ret += f"\tcmp x0, x1\n"
-    return ret
-
-def gen_mips(pwd, rounds):
-    ops = ["+", "-", "^", "rr", "rl"]
-    res = int.from_bytes(pwd.encode(), "little")
-    ret = ""
-    for _ in range(rounds):
-        op = random.choice(ops)
-        rhs = random.randint(1, 10000)
-        shv = random.randint(1, 31)
-        if op == "+":
-            res += rhs
-            ret += f"\tdaddiu $a0, $a0, {rhs}\n"
-        if op == "-":
-            res -= rhs
-            ret += f"\tdaddiu $a0, $a0, -{rhs}\n"
-        if op == "^":
-            res ^= rhs
-            ret += f"\txor $a0, $a0, {rhs}\n"
-        if op == "rl":
-            res = ((res << shv) | (res >> (64 - shv))) & 0xffffffffffffffff
-            ret += f"\tdsll $t0, $a0, {shv}\n"
-            ret += f"\tdsrl $t1, $a0, {64 - shv}\n"
-            ret += f"\tor $a0, $t0, $t1\n"
-        if op == "rr":
-            res = ((res >> shv) | (res << (64 - shv))) & 0xffffffffffffffff
-            ret += f"\tdsrl $t0, $a0, {shv}\n"
-            ret += f"\tdsll $t1, $a0, {64 - shv}\n"
-            ret += f"\tor $a0, $t0, $t1\n"
+        shv = random.randint(1, 63) if op in ["rl", "rr"] else None
+        res, inst = ops[op](res, rhs if shv is None else shv)
+        asm += inst
     
     upper = (res >> 32) & 0xffffffff
     lower = res & 0xffffffff
-    upper_high = (upper >> 16) & 0xffff
-    upper_low = upper & 0xffff
-    lower_high = (lower >> 16) & 0xffff
-    lower_low = lower & 0xffff
+    asm += f"\tmovk x1, #{(upper >> 16) & 0xffff}, lsl 48\n"
+    asm += f"\tmovk x1, #{upper & 0xffff}, lsl 32\n"
+    asm += f"\tmovk x1, #{(lower >> 16) & 0xffff}, lsl 16\n"
+    asm += f"\tmovk x1, #{lower & 0xffff}\n"
+    asm += f"\tcmp x0, x1\n"
+    return asm
 
-    ret += f"\tlui $v0, {upper_high}\n"      
-    ret += f"\tori $v0, $v0, {upper_low}\n"  
-    ret += f"\tori $v0, $v0, {lower_high}\n" 
-    ret += f"\tori $v0, $v0, {lower_low}\n"  
-    ret += f"\tbeq $a0, $v0, 0x0\n"
-    return ret
+def gen_mips64_asm(pwd: str, rounds: int) -> str:
+    ops = {
+        "+": lambda res, rhs: (res + rhs, f"\tdaddiu $a0, $a0, {rhs}\n"),
+        "-": lambda res, rhs: (res - rhs, f"\tdaddiu $a0, $a0, -{rhs}\n"),
+        "^": lambda res, rhs: (res ^ rhs, f"\txor $a0, $a0, {rhs}\n"),
+        "rl": lambda res, shv: (((res << shv) | (res >> (64 - shv))) & 0xffffffffffffffff, 
+                                f"\tdsll $t0, $a0, {shv}\n\tdsrl $t1, $a0, {64 - shv}\n\tor $a0, $t0, $t1\n"),
+        "rr": lambda res, shv: (((res >> shv) | (res << (64 - shv))) & 0xffffffffffffffff, 
+                                f"\tdsrl $t0, $a0, {shv}\n\tdsll $t1, $a0, {64 - shv}\n\tor $a0, $t0, $t1\n")
+    }
+    
+    res = int.from_bytes(pwd.encode(), "little")
+    asm = ""
+    
+    for _ in range(rounds):
+        op = random.choice(list(ops.keys()))
+        rhs = random.randint(1, 10000)
+        shv = random.randint(1, 31) if op in ["rl", "rr"] else None
+        res, inst = ops[op](res, rhs if shv is None else shv)
+        asm += inst
+    
+    upper = (res >> 32) & 0xffffffff
+    lower = res & 0xffffffff
+    asm += f"\tlui $v0, {(upper >> 16) & 0xffff}\n"
+    asm += f"\tori $v0, $v0, {upper & 0xffff}\n"
+    asm += f"\tori $v0, $v0, {(lower >> 16) & 0xffff}\n"
+    asm += f"\tori $v0, $v0, {lower & 0xffff}\n"
+    asm += f"\tbeq $a0, $v0, 0x0\n"
+    return asm
 
-def gen_s(pwd, rounds, arch):
-    s_code = ""
-    if (arch == "x86_64"):
-        s_code = gen_x86_64(pwd, rounds)
-    if (arch == "arm"):
-        s_code = gen_arm(pwd, rounds)
-    if (arch == "mips"):
-        s_code = gen_mips(pwd, rounds)
-    code = f"""
+def gen_asm(pwd: str, rounds: int, arch: str) -> str:
+    generators = {
+        "x86_64": gen_x86_64_asm,
+        "arm": gen_arm64_asm,
+        "mips": gen_mips64_asm
+    }
+    return f"""
 .section .text
 .globl pwd_check
 
 pwd_check:
-{s_code}
+{generators[arch](pwd, rounds)}
 """
-    return code
 
-def gen_bin(code, arch):
-    temp1 = tempfile.NamedTemporaryFile("w")
-    temp1.write(code)
-    temp1.flush()
-    temp2 = tempfile.NamedTemporaryFile("rb")
-    if (arch == "x86_64"):
-        subprocess.run(['as', temp1.name, '-o', temp2.name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
-        subprocess.run(['strip', '-R', '.note.gnu.property', temp2.name], check=True)
-        encoded = base64.b64encode(temp2.read()).decode()
-    if (arch == "mips"):
-        subprocess.run(['mips64-linux-gnuabi64-as', "-march=mips64", "-mabi=64", temp1.name, '-o', temp2.name], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        subprocess.run(['mips64-linux-gnuabi64-strip', '-R', '.gnu.attributes', '-R', '.pdr','-R', '.MIPS.options', "-R", ".MIPS.abiflags", temp2.name], check=True)
-        encoded = base64.b64encode(temp2.read()).decode()
-    if (arch == "arm"):
-        subprocess.run(['aarch64-linux-gnu-as', temp1.name, '-o', temp2.name], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        subprocess.run(['aarch64-linux-gnu-strip', temp2.name], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        encoded = base64.b64encode(temp2.read()).decode()
-    return encoded
+def compile_and_encode(code: str, arch: str) -> str:
+    with tempfile.NamedTemporaryFile("w") as temp1, tempfile.NamedTemporaryFile("rb") as temp2:
+        temp1.write(code)
+        temp1.flush()
+        
+        compile_cmds = {
+            "x86_64": ['as', temp1.name, '-o', temp2.name],
+            "mips": ['mips64-linux-gnuabi64-as', "-march=mips64", "-mabi=64", temp1.name, '-o', temp2.name],
+            "arm": ['aarch64-linux-gnu-as', temp1.name, '-o', temp2.name]
+        }
+        
+        strip_cmds = {
+            "x86_64": ['strip', '-R', '.note.gnu.property', temp2.name],
+            "mips": ['mips64-linux-gnuabi64-strip', '-R', '.gnu.attributes', '-R', '.pdr','-R', '.MIPS.options', "-R", ".MIPS.abiflags", temp2.name],
+            "arm": ['aarch64-linux-gnu-strip', temp2.name]
+        }
+        
+        subprocess.run(compile_cmds[arch], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(strip_cmds[arch], check=True)
+        
+        return base64.b64encode(temp2.read()).decode()
 
-def gen_level():
-    pwd = gen_rand_pwd()
+def gen_level() -> Tuple[str, str]:
+    pwd = gen_pwd()
     rounds = random.randint(120, 140)
     arch = random.choice(["arm", "mips", "x86_64"])
-    asm = gen_s(pwd, rounds, arch)
-    bin = gen_bin(asm, arch)
-    return bin, pwd
-
+    asm = gen_asm(pwd, rounds, arch)
+    encoded_elf = compile_and_encode(asm, arch)
+    return encoded_elf, pwd
 
 def main():
-    print("here's an elf, figure out the password for all the 50 levels")
-    print("you only have 3 seconds for each level, good luck!\n")
-    level = 1
+    time_limit = 3
     max_levels = 50
-    while level < max_levels:
+
+    print("here's an elf, figure out the password for all the 50 levels")
+    print(f"you only have {time_limit} seconds for each level, good luck!\n")
+    
+    for level in range(1, max_levels + 1):
         elf, pwd = gen_level()
         print(f"ELF: {elf}\n")
-        start = int(time.time())
+        
+        start_time = time.time()
         try:
-            out = input("password?: ")
-        except:
+            user_input = input("password?: ")
+        except EOFError:
             return
-        end = int(time.time())
-        if (end - start > 3):
+        
+        if time.time() - start_time > time_limit:
             print("you ran out of time")
             return
-        if (out.strip() == pwd):
-            if (level + 1 >= max_levels):
-                break
+        
+        if user_input.strip() == pwd:
+            if level == max_levels:
+                print(f"congrats! here's your flag: {flag}")
+                return
             print("correct! moving on to the next level")
-            level += 1
         else:
             print("nope")
             return
-    print(f"congrats! here's your flag: {flag}")
 
 if __name__ == "__main__":
     main()
