@@ -1,0 +1,12 @@
+FROM ubuntu@sha256:c62f1babc85f8756f395e6aabda682acd7c58a1b0c3bea250713cd0184a93efa
+
+RUN apt update && apt install gdbserver gdb socat -y
+RUN mkdir /app
+RUN apt install git python3 curl binutils file -y
+RUN bash -c "$(curl -fsSL https://gef.blah.cat/sh)"
+
+COPY fizzbuzz /app
+COPY flag.txt /app
+RUN chmod 755 /app/fizzbuzz
+
+CMD ["socat", "tcp-l:9191,reuseaddr,fork", "EXEC:./app/fizzbuzz"]

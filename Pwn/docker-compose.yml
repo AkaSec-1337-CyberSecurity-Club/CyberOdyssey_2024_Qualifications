@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  fizzbuzz:
+    privileged: true
+    restart : always
+    build : ./fizzbuzz
+    read_only: true
+    ports : 
+      - "9191:9191"
+  burg : 
+    privileged: true
+    restart : always
+    build : ./burg
+    ports : 
+      - "8181:8181"
+  average_todo_app: 
+    privileged: true
+    restart : always
+    build : ./average_todo_app
+    read_only: true
+    ports : 
+      - "7171:7171"
