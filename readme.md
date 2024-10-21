@@ -16,8 +16,8 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
-| [I got Tren](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall00) | Easy | [mza7a](https://github.com/mza7a) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall00/solver.py) |
-| [I got Test](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall01) | Easy | [mza7a](https://github.com/mza7a) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall01/solver.py) by [WhyDude230](https://github.com/whydude230) |
+| [Trenbolone Acetate](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall00) | Easy | [mza7a](https://github.com/mza7a) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall00/solver.py) |
+| [Depo Testosterone](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall01) | Easy | [mza7a](https://github.com/mza7a) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall01/solver.py) by [WhyDude230](https://github.com/whydude230) |
 | [Rawnis](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall02) | Hard | [mza7a](https://github.com/mza7a) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Crypto/chall02/solver.py) |
 
 ## Pwn
