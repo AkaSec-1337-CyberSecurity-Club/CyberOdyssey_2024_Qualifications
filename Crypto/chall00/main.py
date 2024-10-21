@@ -2,7 +2,7 @@ from Crypto.Util.number import *
 import time
 import os
 
-FLAG = b'ODYSSEY{khkhkkhkhkhkhkhkkhkhkhkkhkhkhkhkkhkhkhkkhk}'
+FLAG = b'ODYSSEY{aywa_aywa_ana_m3ak}'
 LINE1 = " _______  ______    _______  __    _  _______  _______  ___      _______  __    _  _______    _______  _______  _______  _______  _______  _______  _______ \n"
 LINE2 = "|       ||    _ |  |       ||  |  | ||  _    ||       ||   |    |       ||  |  | ||       |  |   _   ||       ||       ||       ||   _   ||       ||       |\n"
 LINE3 = "|_     _||   | ||  |    ___||   |_| || |_|   ||   _   ||   |    |   _   ||   |_| ||    ___|  |  |_|  ||       ||    ___||_     _||  |_|  ||_     _||    ___|\n"
