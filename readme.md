@@ -31,8 +31,8 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
-| easy_license | Easy | [pengu](https://github.com/P3enguin) | x |
-| pengolius | Medium | [pengu](https://github.com/P3enguin) | x |
+| easy_license | Easy | [pengu](https://github.com/P3enguin) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Reverse/easy_license/writeup/writeup.md) |
+| pengolius | Medium | [pengu](https://github.com/P3enguin) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Reverse/pengolius/writeup/writeup.md) |
 | peroxide | Medium | [miyako](https://github.com/viierr) | x |
 | ferric | Medium | [miyako](https://github.com/viierr) | x |
 | webserv | Hard | [H3r0](https://github.com/yassine-nid) | x |
