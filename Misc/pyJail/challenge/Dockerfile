@@ -7,7 +7,9 @@ RUN apt-get update \
 
 WORKDIR /usr/src/app
 
-COPY chall.py flag.txt ./
+RUN echo -n "ODYSSEY{pyJ41l5_4r3_5t1ll_4_Tr3nD}" > flag.txt
+
+COPY chall.py .
 
 RUN chmod 500 chall.py \
     && chown ctf:root chall.py \
@@ -15,6 +17,6 @@ RUN chmod 500 chall.py \
 
 USER ctf
 
-EXPOSE 4440
+EXPOSE 4042
 
-CMD socat -T120 TCP-L:4440,fork,reuseaddr EXEC:"python3 chall.py",pty,stderr,setsid,sane,raw,echo=0
+CMD socat -T120 TCP-L:4042,fork,reuseaddr EXEC:"python3 chall.py",pty,stderr,setsid,sane,raw,echo=0
