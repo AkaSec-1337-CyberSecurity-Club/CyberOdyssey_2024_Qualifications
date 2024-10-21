@@ -25,7 +25,11 @@
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
 | SpermPwn | Easy |  [5n0023](https://github.com/5n0023) | x |
-| BunshinNoJutsu | Meduim |  [5n0023](https://github.com/5n0023) | x |
+| BunshinNoJutsu | Medium |  [5n0023](https://github.com/5n0023) | x |
+| fizzbuzz | Easy | lmongol | [fizzbuzz](https://www.lmongol.lol/writeups/akasec_national_quals_2024/fizzbuzz/writeup.md) |
+| average_todo_app | Easy |  lmongol | [average_todo_app](https://www.lmongol.lol/writeups/akasec_national_quals_2024/average_todo_app/writeup.md) |
+| burg | Medium |  lmongol | [burg](https://www.lmongol.lol/writeups/akasec_national_quals_2024/burg/writeup.md) |
+
 
 ## Rev
 
