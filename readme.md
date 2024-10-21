@@ -49,6 +49,7 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
-| [secureLibrary](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/secureLibrary) | Easy | [hel-makh](https://github.com/hel-makh) | x |
-| [pyJail](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/pyJail) | Medium | [hel-makh](https://github.com/hel-makh) | x |
-| [QRupted Code](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/QRupted%20Code) | Medium | [hel-makh](https://github.com/hel-makh) | x |
+| [Secure Library](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/secureLibrary) | Easy | [hel-makh](https://github.com/hel-makh) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Misc/secureLibrary/solution/solve.py) |
+| [pyJail](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/pyJail) | Medium | [hel-makh](https://github.com/hel-makh) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Misc/pyJail/solution/solve.py) |
+| [QRupted Code](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/QRupted%20Code) | Medium | [hel-makh](https://github.com/hel-makh) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/QRupted%20Code) |
+| [Insanity Check](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/Insanity%20Check) | Hard | [hel-makh](https://github.com/hel-makh) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Misc/Insanity%20Check) |
