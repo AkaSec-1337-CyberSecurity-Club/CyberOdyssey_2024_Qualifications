@@ -24,10 +24,10 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
-| [SpermPwn](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/SpermPwn) | Easy |  [5n0023](https://github.com/5n0023) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Pwn/SpermPwn/solve/solve.py) |
-| [fizzbuzz](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/fizzbuzz) | Easy | lmongol | [fizzbuzz](https://www.lmongol.lol/writeups/akasec_national_quals_2024/fizzbuzz/writeup.md) |
-| [average_todo_app](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/average_todo_app) | Easy |  lmongol | [average_todo_app](https://www.lmongol.lol/writeups/akasec_national_quals_2024/average_todo_app/writeup.md) |
-| [burg](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/burg) | Medium |  lmongol | [burg](https://www.lmongol.lol/writeups/akasec_national_quals_2024/burg/writeup.md) |
+| [SpermPwn](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/SpermPwn) | Easy | [5n0023](https://github.com/5n0023) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Pwn/SpermPwn/solve/solve.py) |
+| [fizzbuzz](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/fizzbuzz) | Easy | [lmongol](https://github.com/0ur4n05) | [Writeup](https://www.lmongol.lol/writeups/akasec_national_quals_2024/fizzbuzz/writeup.md) |
+| [average_todo_app](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/average_todo_app) | Easy | [lmongol](https://github.com/0ur4n05) | [Writeup](https://www.lmongol.lol/writeups/akasec_national_quals_2024/average_todo_app/writeup.md) |
+| [burg](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/burg) | Medium | [lmongol](https://github.com/0ur4n05) | [Writeup](https://www.lmongol.lol/writeups/akasec_national_quals_2024/burg/writeup.md) |
 
 
 ## Rev
