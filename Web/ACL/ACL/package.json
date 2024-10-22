@@ -1,0 +1,16 @@
+{
+  "name": "acl",
+  "version": "1.0.0",
+  "description": "ACL ACL ACL",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "express-session": "^1.17.2",
+    "dotenv": "16.4.5",
+    "ejs": "3.1.10"
+  }
+}
