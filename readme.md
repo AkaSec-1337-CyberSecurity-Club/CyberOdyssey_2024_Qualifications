@@ -24,22 +24,21 @@
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
-| SpermPwn | Easy |  [5n0023](https://github.com/5n0023) | x |
-| BunshinNoJutsu | Medium |  [5n0023](https://github.com/5n0023) | x |
-| fizzbuzz | Easy | lmongol | [fizzbuzz](https://www.lmongol.lol/writeups/akasec_national_quals_2024/fizzbuzz/writeup.md) |
-| average_todo_app | Easy |  lmongol | [average_todo_app](https://www.lmongol.lol/writeups/akasec_national_quals_2024/average_todo_app/writeup.md) |
-| burg | Medium |  lmongol | [burg](https://www.lmongol.lol/writeups/akasec_national_quals_2024/burg/writeup.md) |
+| [SpermPwn](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/SpermPwn) | Easy |  [5n0023](https://github.com/5n0023) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Pwn/SpermPwn/solve/solve.py) |
+| [fizzbuzz](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/fizzbuzz) | Easy | lmongol | [fizzbuzz](https://www.lmongol.lol/writeups/akasec_national_quals_2024/fizzbuzz/writeup.md) |
+| [average_todo_app](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/average_todo_app) | Easy |  lmongol | [average_todo_app](https://www.lmongol.lol/writeups/akasec_national_quals_2024/average_todo_app/writeup.md) |
+| [burg](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Pwn/burg) | Medium |  lmongol | [burg](https://www.lmongol.lol/writeups/akasec_national_quals_2024/burg/writeup.md) |
 
 
 ## Rev
 
 | Challenge | Difficulty | Author | Writeup |
 | --------- | ---------- | ------ | ------- |
-| easy_license | Easy | [pengu](https://github.com/P3enguin) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Reverse/easy_license/writeup/writeup.md) |
-| pengolius | Medium | [pengu](https://github.com/P3enguin) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Reverse/pengolius/writeup/writeup.md) |
-| peroxide | Medium | [miyako](https://github.com/viierr) | x |
-| ferric | Medium | [miyako](https://github.com/viierr) | x |
-| webserv | Hard | [H3r0](https://github.com/yassine-nid) | x |
+| [easy_license](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Reverse/easy_license) | Easy | [pengu](https://github.com/P3enguin) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Reverse/easy_license/writeup/writeup.md) |
+| [pengolius](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Reverse/pengolius) | Medium | [pengu](https://github.com/P3enguin) | [Writeup](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/blob/main/Reverse/pengolius/writeup/writeup.md) |
+| [peroxide](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Reverse/peroxide) | Medium | [miyako](https://github.com/viierr) | x |
+| [ferric](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Reverse/ferric) | Medium | [miyako](https://github.com/viierr) | x |
+| [webserv](https://github.com/AkaSec-1337-CyberSecurity-Club/cyberodyssey_2024_qualifications/tree/main/Reverse/webserve) | Hard | [H3r0](https://github.com/yassine-nid) | x |
 
 ## Forensics
 
