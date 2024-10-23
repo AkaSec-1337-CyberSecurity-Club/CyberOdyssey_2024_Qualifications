@@ -19,7 +19,7 @@ the infection routine is as follow :
 as for this part i didnt use any famous infection methods, this one wont work on all binaries.
 6. generate a new key to encrypt the body with, also chose a random decryptor (i only had 3 decryptors hh).
 7. read the signature from **/var/.x1ee9w** . if the file doesnt exist it creates it .
-8. for the flag, based on the signature, if there has been 42 infection, It stars decrypting the flag,based on 0x1337 + 42.
+8. for the flag, based on the signature, if there has been 42 infection, It stars decrypting the flag,based on 0x1337 + 42, as the key.
    each infection decrypt one character of the flag and place It after the number next to the version **Pengolius version 1.0**.
    ```c
     Pengolius version 1.0 made with <3 by pengu - 1360
@@ -29,7 +29,7 @@ as for this part i didnt use any famous infection methods, this one wont work on
     Pengolius version 1._ made with <3 by pengu - 1364
     ```
 9. patch the binary with the decryptor, the new key, and write it to the empty padding at the end of the text segment.
-10. basically if you know how the routine works you could have run this bash script and gets the flag : 
+10. basically if you know how the routine works you could have run this bash script and get the flag : 
     ```c
     rm /var/.x1ee9w
     mkdir /tmp/chall
