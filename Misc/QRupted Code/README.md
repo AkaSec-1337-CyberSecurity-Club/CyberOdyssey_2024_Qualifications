@@ -36,8 +36,6 @@ We decode the QR Code and obtain the flag:
 
 ![](img/flag.png)
 
-The flag is still corrupted because we didn't correct the missing modules after adjusting the placement of the alignment block. Luckily, the corruption occurs in the flag format section, so we can simply change it and submit the flag.
-
 ## Flag:
 ```
 ODYSSEY{1_Sh4ll_C4ll_Y0u_QR_G0d}
