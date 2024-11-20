@@ -65,19 +65,6 @@ _start:
     cmp     rax, 1
     je      .quit
 
-    mov     rdi, 0                
-    mov     rsi, 4096             
-    mov     rdx, 7                
-    mov     r10, 0x22             
-    xor     r8, r8                
-    xor     r9, r9                
-    mov     rax, 9                
-    syscall
-
-    mov     rdi, rax
-
-
-
 .mmap_executable:
     mov rdi, 0                
     mov rsi, 4096             
